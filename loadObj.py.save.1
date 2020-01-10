@@ -1,0 +1,52 @@
+def dump(fileName):
+	"""Returns the Dump data from an obj file as a tuple formated like (vertices, edges, obj_name)"""
+	vertices = []
+	edges = []
+	obj_name = ""
+	with open(fileName, "r") as f:
+		line = ""
+		i = 0
+		for line in f:
+			print(i)
+			try:
+				line = f.readline()
+				if(line.startswith("#") or line.startswith("mtllib")):
+					continue
+				txt = line[2:(len(line) - 1)]
+				if(line.startswith("o")):
+					print("Obj Name:")
+					#Dump object name
+					obj_name = txt
+					print(obj_name)
+				if(line.startswith("v")):
+					#Add vertice
+					print("Verticie:")
+					verts = txt.split()
+					for i in range(len(verts)):
+						verts[i] = float(verts[i])
+					print("verts: {v}".format(v=verts))
+					vertices.append(tuple(verts))
+				if(line.startswith("f")):
+					_txt = txt.split()
+					print("_txt: {0}".format) #Pick up here
+					_
+					print(__txt)
+			except(EOFError):
+				print("EOF")
+				break
+			except:
+				print()
+				print("other error")
+				print("iter: {iter}".format(iter=i))
+				print("line: {l}".format(l=line))
+				break
+			finally:
+				print("-" * 20)
+				i += 1
+	return_tuple = (tuple(vertices), tuple(edges), obj_name)
+	return return_tuple
+
+if(__name__ == "__main__"):
+	print("main")
+	dat = dump("untitled.obj")
+	print(dat[0][0:12])

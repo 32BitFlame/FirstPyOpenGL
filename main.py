@@ -51,19 +51,21 @@ def Cube():
 	print(quads)
 	iter = False
 	for surface in surfaces:
+		color = (1,1,1) if iter else (0.5,0.5,0.5)
 		for vertex in surface:
 			if(len(surface) != 4):
 				continue
-			glColor3fv((0,1,0) if iter else (1,0,0))
+			glColor3fv(color)
 			glVertex3fv(vertices[vertex])
 			iter = not iter
 	glEnd()
 	glBegin(GL_TRIANGLES)
 	for surface in surfaces:
+		color = (1,1,1) if iter else (0.5,0.5,0.5)
 		for vertex in surface:
 			if(len(surface) != 3):
 				continue
-			glColor3fv((0,1,0) if iter else (1,0,0))
+			glColor3fv(color)
 			glVertex3fv(vertices[vertex]) # Pick up here
 			iter = not iter
 	glEnd()
